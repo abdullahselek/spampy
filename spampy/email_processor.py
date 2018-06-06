@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import nltk
 
 def preprocess(email):
     """
@@ -26,3 +27,32 @@ def preprocess(email):
     # The '$' sign gets replaced with 'dollar'
     email = re.sub('[$]+', 'dollar', email)
     return email
+
+def create_tokenlist(email):
+    """
+    Tokenizes it, creates a list of tokens in the e-mail.
+    Args:
+      email (str):
+        Raw e-mail
+    Returns:
+      Ordered list of tokens in the e-mail.
+    """
+    
+    # use NLTK porter stemmer
+    stemmer = nltk.stem.porter.PorterStemmer()
+    email = preprocess(email)
+    # Split the e-mail into single words by ' ', '@', '$', '/', ...
+    tokens = re.split('[ \r@\r$\r/\r#\r.\r-\r:\r&\r*\r+\r=\r[\r]\r?\r!\r(\r)\r{\r}\r,\'\"\r>\r_\r<\r;\r%]', email)
+    tokens = tokens[0].split()
+    # Loop over each word and use a stemmer to shorten it,
+    tokenlist = []
+    for token in tokens:
+        # Remove any non alphanumeric characters
+        token = re.sub('[^a-zA-Z0-9]', '', token)
+        # Use the Porter stemmer to stem the word
+        stemmed = stemmer.stem(token)
+        # Pass empty tokens
+        if not len(token): continue
+        # Save a list of all unique stemmed words
+        tokenlist.append(stemmed)
+    return tokenlist    
