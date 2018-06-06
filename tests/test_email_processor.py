@@ -4,7 +4,7 @@
 import unittest
 from spampy import email_processor
 
-class EmailProcessor(unittest.TestCase):
+class EmailProcessorTests(unittest.TestCase):
 
     def test_preprocess(self):
         processed_email = email_processor.preprocess('<xyz@hotmail.com> Do You Want To Make $1000 Or More Per Week? https://github.com')
