@@ -24,3 +24,9 @@ class EmailProcessorTests(unittest.TestCase):
         vocablary_dict = email_processor.get_vocablary_dict()
         index_list = email_processor.get_vocablary_indices(email, vocablary_dict)
         self.assertEqual(len(index_list), 11)
+
+    def test_feature_vector_from_email(self):
+        email = '<xyz@hotmail.com> Do You Want To Make $1000 Or More Per Week? https://github.com'
+        vocablary_dict = email_processor.get_vocablary_dict()
+        feature_vector = email_processor.feature_vector_from_email(email, vocablary_dict)
+        self.assertEqual(len(feature_vector), 1899)

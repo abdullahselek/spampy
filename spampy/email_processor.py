@@ -4,6 +4,7 @@
 import re
 import nltk
 import os
+import numpy as np
 
 def preprocess(email):
     """
@@ -92,3 +93,21 @@ def get_vocablary_indices(email, vocablary_dict):
     tokenlist = create_tokenlist(email)
     index_list = [vocablary_dict[token] for token in tokenlist if token in vocablary_dict]
     return index_list
+
+def feature_vector_from_email(email, vocablary_dict):
+    """
+    Returns a vector of shape (n,1) with a size of the vocablary_dict.
+    If the vocab word with index == 1 is in the email, first element in
+    this vector is 1, 0 otherwise.
+    Args:
+      email (str):
+        E-mail.
+      vocablary_dict (dict):
+        Vocablary dictionary created by `get_vocablary_dict`.
+    """
+    n = len(vocablary_dict)
+    result = np.zeros((n,1))
+    vocablary_indices = get_vocablary_indices(email, vocablary_dict)
+    for index in vocablary_indices:
+        result[index] = 1
+    return result
