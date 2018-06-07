@@ -76,3 +76,19 @@ def get_vocablary_dict(path='spampy/datasets', filename='vocablary.txt'):
             (val, key) = line.split()
             vocablary_dict[key] = int(val)
     return vocablary_dict
+
+def get_vocablary_indices(email, vocablary_dict):
+    """
+    Returns a list of indices (location) of each stemmed word in email.
+    Args:
+      email (str):
+        E-mail.
+      vocablary_dict (dict):
+        Vocablary dictionary created by `get_vocablary_dict`.
+    Returns:
+      Indices list.
+    """
+
+    tokenlist = create_tokenlist(email)
+    index_list = [vocablary_dict[token] for token in tokenlist if token in vocablary_dict]
+    return index_list
