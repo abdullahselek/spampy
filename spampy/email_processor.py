@@ -3,6 +3,7 @@
 
 import re
 import nltk
+import os
 
 def preprocess(email):
     """
@@ -56,3 +57,22 @@ def create_tokenlist(email):
         # Save a list of all unique stemmed words
         tokenlist.append(stemmed)
     return tokenlist    
+
+def get_vocablary_dict(path='spampy/datasets', filename='vocablary.txt'):
+    """
+    Add vocablary text file content into a dictionary.
+    Args:
+      path (str):
+        Vocablary file folder path.
+      filename (str):
+        Vocablary file name.
+    Returns:
+      Vocablary dict.
+    """
+
+    vocablary_dict = {}
+    with open(os.path.join(path, filename), 'r') as f:
+        for line in f:
+            (val, key) = line.split()
+            vocablary_dict[key] = int(val)
+    return vocablary_dict
