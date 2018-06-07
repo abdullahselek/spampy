@@ -13,4 +13,7 @@ __url__          = 'https://github.com/abdullahselek/spampy'
 __download_url__ = 'https://github.com/abdullahselek/spampy'
 __description__  = 'Spam filtering module with Machine Learning using SVM.'
 
-from spampy import email_processor
+from spampy import (
+    email_processor,
+    spam_classification
+)
