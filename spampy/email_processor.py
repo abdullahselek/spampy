@@ -8,7 +8,7 @@ import numpy as np
 
 def preprocess(email):
     """
-    Prepess (simplifies) raw email.
+    Preprocess (simplifies) raw email.
     Args:
       email (str):
         Raw e-mail
