@@ -10,3 +10,8 @@ class SpamClassificationTests(unittest.TestCase):
         X, y = spam_classification.load_training_set()
         self.assertIsNotNone(X)
         self.assertIsNotNone(y)
+
+    def test_load_test_set(self):
+        Xtest, ytest = spam_classification.load_test_set()
+        self.assertIsNotNone(Xtest)
+        self.assertIsNotNone(ytest)

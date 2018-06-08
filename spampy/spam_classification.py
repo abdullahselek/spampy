@@ -20,3 +20,15 @@ def load_training_set():
     dataset = sio.loadmat(training_set)
     X, y = dataset['X'], dataset['y']
     return X, y
+
+def load_test_set():
+    """
+    Load test set and return features and labels.
+    Returns:
+      Test features and labels.
+    """
+
+    training_set = join(parent_directory_path, 'datasets/spamTest.mat')
+    dataset = sio.loadmat(training_set)
+    Xtest, ytest = dataset['Xtest'], dataset['ytest']
+    return Xtest, ytest
