@@ -18,7 +18,7 @@ class SpamClassifierTests(unittest.TestCase):
         self.assertIsNotNone(Xtest)
         self.assertIsNotNone(ytest)
 
-    def test_predict_email(self):
+    def test_classify_email(self):
         with open(os.path.join('tests/data', 'spam_sample.txt'), 'r') as f:
-            prediction = spam_classifier.predict_email(f.read())
-            self.assertEqual(prediction, 'Spam possibility = 68.08%')
+            prediction = spam_classifier.classify_email(f.read())
+            self.assertEqual(prediction, 0)
