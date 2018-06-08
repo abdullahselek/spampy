@@ -15,5 +15,5 @@ __description__  = 'Spam filtering module with Machine Learning using SVM.'
 
 from spampy import (
     email_processor,
-    spam_classification
+    spam_classifier
 )

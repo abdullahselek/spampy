@@ -4,21 +4,21 @@
 import unittest
 import os
 
-from spampy import spam_classification
+from spampy import spam_classifier
 
-class SpamClassificationTests(unittest.TestCase):
+class SpamClassifierTests(unittest.TestCase):
 
     def test_load_training_set(self):
-        X, y = spam_classification.load_training_set()
+        X, y = spam_classifier.load_training_set()
         self.assertIsNotNone(X)
         self.assertIsNotNone(y)
 
     def test_load_test_set(self):
-        Xtest, ytest = spam_classification.load_test_set()
+        Xtest, ytest = spam_classifier.load_test_set()
         self.assertIsNotNone(Xtest)
         self.assertIsNotNone(ytest)
 
     def test_predict_email(self):
         with open(os.path.join('tests/data', 'spam_sample.txt'), 'r') as f:
-            prediction = spam_classification.predict_email(f.read())
+            prediction = spam_classifier.predict_email(f.read())
             self.assertEqual(prediction, 'Spam possibility = 68.08%')
