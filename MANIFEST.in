@@ -2,6 +2,8 @@ include COPYING
 include LICENSE
 include NOTICE
 include *.rst
-include spampy/datasets/
+include spampy/datasets/spamTrain.mat
+include spampy/datasets/spamTest.mat
+include spampy/datasets/vocablary.txt
 include requirements.txt
 prune .DS_Store
