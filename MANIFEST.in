@@ -1,0 +1,7 @@
+include COPYING
+include LICENSE
+include NOTICE
+include *.rst
+include spampy/datasets/
+include requirements.txt
+prune .DS_Store
