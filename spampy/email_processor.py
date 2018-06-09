@@ -23,9 +23,9 @@ def preprocess(email):
     # Any numbers get replaced with the string 'number'
     email = re.sub('[0-9]+', 'number', email)
     # Any word starting with http or https:// replaced with 'httpaddr'
-    email = re.sub('(http|https)://[^\rs]*', 'httpaddr', email)
+    email = re.sub('(http|https)://[^\s]*', 'httpaddr', email)
     # Strings with "@" in the middle are considered emails --> 'emailaddr'
-    email = re.sub('[^\rs]+@[^\rs]+', 'emailaddr', email)
+    email = re.sub('[^\s]+@[^\s]+', 'emailaddr', email)
     # The '$' sign gets replaced with 'dollar'
     email = re.sub('[$]+', 'dollar', email)
     return email
@@ -44,7 +44,7 @@ def create_tokenlist(email):
     stemmer = nltk.stem.porter.PorterStemmer()
     email = preprocess(email)
     # Split the e-mail into single words by ' ', '@', '$', '/', ...
-    tokens = re.split('[ \r@\r$\r/\r#\r.\r-\r:\r&\r*\r+\r=\r[\r]\r?\r!\r(\r)\r{\r}\r,\'\"\r>\r_\r<\r;\r%]', email)
+    tokens = re.split('[ \@\$\/\#\.\-\:\&\*\+\=\[\]\?\!\(\)\{\}\,\'\"\>\_\<\;\%]', email)
     tokens = tokens[0].split()
     # Loop over each word and use a stemmer to shorten it,
     tokenlist = []
