@@ -41,12 +41,10 @@ def load_test_set():
 def train_svm():
     """
     Fit SVM with features and labels.
-    Returns:
-      Training features and labels.
     """
+
     X, y = load_training_set()
     linear_svm.fit(X, y.flatten())
-    return X, y
 
 def classify_email(email):
     """
@@ -58,10 +56,10 @@ def classify_email(email):
       Spam or not.
     """
 
-    _, y = train_svm()
+    train_svm()
     processed_email = email_processor.preprocess(email)
-    vocablary_dict = email_processor.get_vocablary_dict()
     print(processed_email)
+    vocablary_dict = email_processor.get_vocablary_dict()
     feature_vector = email_processor.feature_vector_from_email(processed_email, vocablary_dict)
     double_dimesion_email = np.reshape(feature_vector, (-1, 1899))
     spam_prediction = linear_svm.predict(double_dimesion_email)
