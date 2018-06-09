@@ -58,10 +58,8 @@ def classify_email(email):
 
     train_svm()
     processed_email = email_processor.preprocess(email)
-    print(processed_email)
     vocablary_dict = email_processor.get_vocablary_dict()
     feature_vector = email_processor.feature_vector_from_email(processed_email, vocablary_dict)
     double_dimesion_email = np.reshape(feature_vector, (-1, 1899))
     spam_prediction = linear_svm.predict(double_dimesion_email)
-    print(spam_prediction)
     return spam_prediction

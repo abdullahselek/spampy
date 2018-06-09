@@ -21,4 +21,4 @@ class SpamClassifierTests(unittest.TestCase):
     def test_classify_email(self):
         with open(os.path.join('tests/data', 'spam_sample.txt'), 'r') as f:
             prediction = spam_classifier.classify_email(f.read())
-            self.assertEqual(prediction, 0)
+            self.assertEqual(prediction, 1)
