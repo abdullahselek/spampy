@@ -45,7 +45,6 @@ def create_tokenlist(email):
     email = preprocess(email)
     # Split the e-mail into single words by ' ', '@', '$', '/', ...
     tokens = re.split('[ \@\$\/\#\.\-\:\&\*\+\=\[\]\?\!\(\)\{\}\,\'\"\>\_\<\;\%]', email)
-    tokens = tokens[0].split()
     # Loop over each word and use a stemmer to shorten it,
     tokenlist = []
     for token in tokens:
@@ -75,7 +74,7 @@ def get_vocablary_dict(path='spampy/datasets', filename='vocablary.txt'):
     with open(os.path.join(path, filename), 'r') as f:
         for line in f:
             (val, key) = line.split()
-            vocablary_dict[key] = int(val)
+            vocablary_dict[int(val)] = key
     return vocablary_dict
 
 def get_vocablary_indices(email, vocablary_dict):
@@ -105,6 +104,7 @@ def feature_vector_from_email(email, vocablary_dict):
       vocablary_dict (dict):
         Vocablary dictionary created by `get_vocablary_dict`.
     """
+
     n = len(vocablary_dict)
     result = np.zeros((n,1))
     vocablary_indices = get_vocablary_indices(email, vocablary_dict)
