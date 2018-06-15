@@ -1,6 +1,16 @@
 spampy
 ======
 
+.. image:: https://codecov.io/gh/abdullahselek/spampy/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/abdullahselek/spampy
+
++-------------------------------------------------------------------------+----------------------------------------------------------------------------------+
+|                                Linux                                    |                                       Windows                                    |
++=========================================================================+==================================================================================+
+| .. image:: https://travis-ci.org/abdullahselek/spampy.svg?branch=master | .. image:: https://ci.appveyor.com/api/projects/status/eto8ikrjaq8438o1?svg=true |
+|     :target: https://travis-ci.org/abdullahselek/spampy                 |    :target: https://ci.appveyor.com/project/abdullahselek/spampy                 |
++-------------------------------------------------------------------------+----------------------------------------------------------------------------------+
+
 Spam filtering module with Machine Learning using SVM. **spampy** is a classifier that uses `Support Vector Machines`
 which tries to classify given raw emails if they are spam or not.
 
