@@ -13,5 +13,7 @@ do
     rm -rf $FOLDER
     mkdir $FOLDER
     echo "Downloading dataset from $URL into $FOLDER"
-    curl --url $URL --output "$FOLDER/$FILE"
+    curl -L -o "$FOLDER/$FILE" $URL
+    tar zxvf "$FOLDER/$FILE" -C "$FOLDER"
+    rm -rf "$FOLDER/$FILE"
 done
