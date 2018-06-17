@@ -12,9 +12,9 @@ do
     FILE=$ELEMENT.tar.gz
     URL="$BASE_URL$FILE"
     FOLDER="$ELEMENT"
-    PWD
     echo "Downloading dataset from $URL into $FOLDER"
     curl -L -o "$FILE" $URL
     tar zxvf "$FILE"
     rm -rf "$FILE"
+    rm "$FOLDER/Summary.txt"
 done
