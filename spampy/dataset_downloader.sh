@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-ARRAY=( "enron1" "enron2" "enron3" "enron4" "enron5" "enron6" )
+ARRAY=("enron1" "enron2" "enron3" "enron4" "enron5" "enron6")
 BASE_URL="http://www.aueb.gr/users/ion/data/enron-spam/preprocessed/"
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 cd "$SCRIPTPATH/datasets"
@@ -14,7 +14,7 @@ do
     FOLDER="$ELEMENT"
     echo "Downloading dataset from $URL into $FOLDER"
     curl -L -o "$FILE" $URL
-    tar zxvf "$FILE"
+    tar zxf "$FILE"
     rm -rf "$FILE"
     rm "$FOLDER/Summary.txt"
 done

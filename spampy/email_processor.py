@@ -5,6 +5,9 @@ import re
 import nltk
 import os
 import numpy as np
+import codecs
+
+from collections import Counter
 
 def preprocess(email):
     """
@@ -111,3 +114,37 @@ def feature_vector_from_email(email, vocablary_dict):
     for index in vocablary_indices:
         result[index] = 1
     return result
+
+def listdir(directory):
+    """
+    A specialized version of os.listdir() that ignores files that
+    start with a leading period.
+    
+    Especially dismissing .DS_STORE s.
+    """
+    filelist = os.listdir(directory)
+    return [x for x in filelist if not (x.startswith('.'))]
+
+def create_enron_dictionary(root_dir='spampy/datasets/enron'):
+    emails_dirs = [os.path.join(root_dir,f) for f in listdir(root_dir)]    
+    all_words = []       
+    for emails_dir in emails_dirs:
+        dirs = [os.path.join(emails_dir,f) for f in listdir(emails_dir)]
+        for d in dirs:
+            emails = [os.path.join(d,f) for f in listdir(d)]
+            for mail in emails:
+                with codecs.open(mail, "r", encoding='utf-8', errors='ignore') as m:
+                    for line in m:
+                        words = line.split()
+                        all_words += words
+    dictionary = Counter(all_words)
+    list_to_remove = dictionary.keys()
+    
+    for item in list_to_remove:
+        if item.isalpha() == False: 
+            del dictionary[item]
+        elif len(item) == 1:
+            del dictionary[item]
+    dictionary = dictionary.most_common(3000)
+    np.save('dict_enron.npy',dictionary) 
+    return dictionary

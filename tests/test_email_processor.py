@@ -30,3 +30,7 @@ class EmailProcessorTests(unittest.TestCase):
         vocablary_dict = email_processor.get_vocablary_dict()
         feature_vector = email_processor.feature_vector_from_email(email, vocablary_dict)
         self.assertEqual(len(feature_vector), 1899)
+
+    def test_create_enron_dictionary(self):
+        enron_dictionary = email_processor.create_enron_dictionary()
+        self.assertEqual(len(enron_dictionary), 3000)
