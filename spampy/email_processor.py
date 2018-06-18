@@ -126,12 +126,12 @@ def listdir(directory):
     return [x for x in filelist if not (x.startswith('.'))]
 
 def create_enron_dictionary(root_dir='spampy/datasets/enron'):
-    emails_dirs = [os.path.join(root_dir,f) for f in listdir(root_dir)]    
-    all_words = []       
+    emails_dirs = [os.path.join(root_dir, f) for f in listdir(root_dir)]
+    all_words = []
     for emails_dir in emails_dirs:
-        dirs = [os.path.join(emails_dir,f) for f in listdir(emails_dir)]
+        dirs = [os.path.join(emails_dir, f) for f in listdir(emails_dir)]
         for d in dirs:
-            emails = [os.path.join(d,f) for f in listdir(d)]
+            emails = [os.path.join(d, f) for f in listdir(d)]
             for mail in emails:
                 with codecs.open(mail, "r", encoding='utf-8', errors='ignore') as m:
                     for line in m:
