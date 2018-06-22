@@ -6,6 +6,7 @@ import nltk
 import os
 import numpy as np
 import codecs
+import multiprocessing as mp
 
 from collections import Counter
 
@@ -125,20 +126,36 @@ def listdir(directory):
     filelist = os.listdir(directory)
     return [x for x in filelist if not (x.startswith('.'))]
 
-def create_enron_dictionary(root_dir='spampy/datasets/enron'):
-    emails_dirs = [os.path.join(root_dir, f) for f in listdir(root_dir)]
+def enron_processor(emails_dir, return_dict):
     all_words = []
-    for emails_dir in emails_dirs:
-        dirs = [os.path.join(emails_dir, f) for f in listdir(emails_dir)]
-        for d in dirs:
-            emails = [os.path.join(d, f) for f in listdir(d)]
-            for mail in emails:
-                with codecs.open(mail, "r", encoding='utf-8', errors='ignore') as m:
-                    for line in m:
-                        words = line.split()
-                        all_words += words
+    dirs = [os.path.join(emails_dir, f) for f in listdir(emails_dir)]
+    for d in dirs:
+        emails = [os.path.join(d, f) for f in listdir(d)]
+        for mail in emails:
+            with codecs.open(mail, "r", encoding='utf-8', errors='ignore') as m:
+                for line in m:
+                    words = line.split()
+                    all_words += words
     dictionary = Counter(all_words)
     list_to_remove = list(dictionary.keys())
+    return_dict['all_words'] = dictionary
+    return_dict['list_to_remove'] = list_to_remove
+
+def create_enron_dictionary(root_dir='spampy/datasets/enron'):
+    manager = mp.Manager()
+    return_dict = manager.dict()
+    jobs = []
+    emails_dirs = [os.path.join(root_dir, f) for f in listdir(root_dir)]
+    for emails_dir in emails_dirs:
+        p = mp.Process(target=enron_processor, args=(emails_dir, return_dict))
+        jobs.append(p)
+        p.start()
+
+    for proc in jobs:
+        proc.join()
+
+    dictionary = return_dict['all_words']
+    list_to_remove = return_dict['list_to_remove']
 
     for item in list_to_remove:
         if item.isalpha() == False: 
