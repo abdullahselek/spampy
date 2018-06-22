@@ -163,5 +163,53 @@ def create_enron_dictionary(root_dir='spampy/datasets/enron'):
         elif len(item) == 1:
             del dictionary[item]
     dictionary = dictionary.most_common(3000)
-    np.save('dict_enron.npy',dictionary) 
+    np.save('dict_enron.npy', dictionary)
     return dictionary
+
+def features_processor(emails_dir, return_dict):
+    features_matrix = return_dict['features_matrix']
+    train_labels = return_dict['train_labels']
+    docID = 0
+    enron_dict = return_dict['enron_dict']
+    dirs = [os.path.join(emails_dir, f) for f in os.listdir(emails_dir)]
+    for d in dirs:
+        emails = [os.path.join(d, f) for f in os.listdir(d)]
+        for mail in emails:
+            with open(mail) as m:
+                all_words = []
+                for line in m:
+                    words = line.split()
+                    all_words += words
+                for word in all_words:
+                    wordID = 0
+                    for i, d in enumerate(enron_dict):
+                        if d[0] == u'word':
+                            wordID = i
+                            features_matrix[docID, wordID] = all_words.count(word)
+            train_labels[docID] = int(mail.split(".")[-2] == 'spam')
+            docID = docID + 1
+    return_dict['features_matrix'] = features_matrix
+    return_dict['train_labels'] = train_labels
+
+def extract_enron_features(root_dir='spampy/datasets/enron'):
+    enron_dict = create_enron_dictionary(root_dir)
+    manager = mp.Manager()
+    return_dict = manager.dict()
+    return_dict['enron_dict'] = enron_dict
+    features_matrix = np.zeros((33716, 3000))
+    train_labels = np.zeros(33716)
+    return_dict['features_matrix'] = features_matrix
+    return_dict['train_labels'] = train_labels
+    jobs = []
+    emails_dirs = [os.path.join(root_dir, f) for f in os.listdir(root_dir)]
+    for emails_dir in emails_dirs:
+        p = mp.Process(target=features_processor, args=(emails_dir, return_dict))
+        jobs.append(p)
+        p.start()
+
+    for proc in jobs:
+        proc.join()
+
+    features_matrix = return_dict['features_matrix']
+    train_labels = return_dict['train_labels']
+    return features_matrix, train_labels
