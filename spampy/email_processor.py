@@ -212,4 +212,4 @@ def extract_enron_features(root_dir='spampy/datasets/enron'):
 
     features_matrix = return_dict['features_matrix']
     train_labels = return_dict['train_labels']
-    return features_matrix, train_labels
+    return np.array(features_matrix), np.array(train_labels)
