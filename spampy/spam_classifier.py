@@ -1,17 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os.path
 import scipy.io as sio
 import numpy as np
 
 from os.path import join, dirname
 from sklearn import svm
 from spampy import email_processor
+from sklearn.model_selection import train_test_split
+from sklearn.svm import LinearSVC
 
 # Parent directory
 parent_directory_path = dirname(__file__)
 # Support Vector Machine
 linear_svm = svm.SVC(C=0.1, kernel='linear')
+linear_svc = LinearSVC()
 
 def load_training_set():
     """
@@ -62,3 +66,15 @@ def classify_email(email):
     double_dimesion_email = np.reshape(feature_vector, (-1, 1899))
     spam_prediction = linear_svm.predict(double_dimesion_email)
     return spam_prediction
+
+def classify_email_with_enron(email):
+    if os.path.exists('enron_features_matrix.npy') == False & os.path.exists('enron_labels.npy') == False:
+        features_matrix, labels = email_processor.extract_enron_features()
+        np.save('enron_features_matrix.npy', features_matrix)
+        np.save('enron_labels.npy', labels)
+    else:
+        features_matrix = np.load('enron_features_matrix.npy')
+        labels = np.load('enron_labels.npy')
+    X_train, _, y_train, _ = train_test_split(features_matrix, labels, test_size=0.40)
+    linear_svc.fit(X_train, y_train)
+    return linear_svc.predict(email)
