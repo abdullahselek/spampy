@@ -68,6 +68,9 @@ def classify_email(email):
     return spam_prediction
 
 def classify_email_with_enron(email):
+    vocablary_dict = email_processor.create_enron_dictionary()
+    feature_vector = email_processor.feature_vector_from_email(email, vocablary_dict)
+    double_dimesion_email = np.reshape(feature_vector, (-1, 3000))
     if os.path.exists('enron_features_matrix.npy') == False & os.path.exists('enron_labels.npy') == False:
         features_matrix, labels = email_processor.extract_enron_features()
         np.save('enron_features_matrix.npy', features_matrix)
@@ -77,4 +80,4 @@ def classify_email_with_enron(email):
         labels = np.load('enron_labels.npy')
     X_train, _, y_train, _ = train_test_split(features_matrix, labels, test_size=0.40)
     linear_svc.fit(X_train, y_train)
-    return linear_svc.predict(email)
+    return linear_svc.predict(double_dimesion_email)
