@@ -11,7 +11,7 @@ spampy
 |     :target: https://travis-ci.org/abdullahselek/spampy                 |    :target: https://ci.appveyor.com/project/abdullahselek/spampy                 |
 +-------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
-Spam filtering module with Machine Learning using SVM. **spampy** is a classifier that uses `Support Vector Machines`
+Spam filtering module with Machine Learning using SVM. **spampy** is a classifier that uses ``Support Vector Machines``
 which tries to classify given raw emails if they are spam or not.
 
 Support vector machines (SVMs) are supervised learning models with associated learning algorithms that analyze data used
@@ -22,4 +22,5 @@ it a non-probabilistic binary linear classifier.
 Many email services today provide spam filters that are able to classify emails into spam and non-spam email with high accuracy.
 **spampy** is a learning project that you can use filtering spam mails.
 
-Used a small vocablary list that contains words used most of the spam emails.
+**spampy** uses two different datasets for classification. One of the datasets is already import inside the project under ``spampy/datasets/`` folder.
+Second dataset is **enron-spam** dataset and inside the ``spampy`` folder I created a shell script which downloads and extract it for you.
