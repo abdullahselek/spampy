@@ -68,6 +68,15 @@ def classify_email(email):
     return spam_prediction
 
 def classify_email_with_enron(email):
+    """
+    Classify spam possibility of given email with enron dataset.
+    Args:
+      email (str):
+        Raw e-mail.
+    Returns:
+      Spam or not.
+    """
+
     vocablary_dict = email_processor.create_enron_dictionary()
     feature_vector = email_processor.feature_vector_from_email(email, vocablary_dict)
     double_dimesion_email = np.reshape(feature_vector, (-1, 3000))
