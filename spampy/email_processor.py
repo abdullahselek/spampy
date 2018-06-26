@@ -127,6 +127,17 @@ def listdir(directory):
     return [x for x in filelist if not (x.startswith('.'))]
 
 def enron_processor(emails_dir, return_dict):
+    """
+    A function which processes .txt email files into lists
+    and returns in a dictionary.
+    
+    Args:
+      emails_dir (str):
+        Root folders for emails.
+      return_dict (dict):
+        Shared dict for processed datas.
+    """
+
     all_words = []
     dirs = [os.path.join(emails_dir, f) for f in listdir(emails_dir)]
     for d in dirs:
@@ -142,6 +153,15 @@ def enron_processor(emails_dir, return_dict):
     return_dict['list_to_remove'] = list_to_remove
 
 def create_enron_dictionary(root_dir='spampy/datasets/enron'):
+    """
+    A function which create a dictionary from enron dataset.
+    Uses multiple process.
+    
+    Args:
+      root_dir (str):
+        Root folders for enron dataset.
+    """
+
     manager = mp.Manager()
     return_dict = manager.dict()
     jobs = []
@@ -167,6 +187,17 @@ def create_enron_dictionary(root_dir='spampy/datasets/enron'):
     return dictionary
 
 def features_processor(emails_dir, return_dict):
+    """
+    A function which processes data features into lists
+    and returns in a dictionary.
+    
+    Args:
+      emails_dir (str):
+        Root folders for emails.
+      return_dict (dict):
+        Shared dict for processed datas.
+    """
+
     features_matrix = return_dict['features_matrix']
     train_labels = return_dict['train_labels']
     docID = 0
@@ -192,6 +223,15 @@ def features_processor(emails_dir, return_dict):
     return_dict['train_labels'] = train_labels
 
 def extract_enron_features(root_dir='spampy/datasets/enron'):
+    """
+    A function creates features and labels from enron dataset.
+    Uses multiple process and returns in a tuple.
+    
+    Args:
+      root_dir (str):
+        Root folders for enron dataset.
+    """
+
     enron_dict = create_enron_dictionary(root_dir)
     manager = mp.Manager()
     return_dict = manager.dict()
