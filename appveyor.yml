@@ -19,8 +19,7 @@ install:
 build: off
 
 build_script: 
-  - sh bin/nwb configure %platform% %configuration%
-  - sh /spampy/dataset_downloader.sh
+  - sh: spampy/dataset_downloader.sh
 
 test_script:
   - "%PYTHON%\\python.exe -m pytest -s -v --cov-report xml --cov=spampy"
