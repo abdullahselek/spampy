@@ -21,7 +21,7 @@ Project tree
 
 * email_processor ``Helper to collect features and labels from datasets.``
 * spam_classifier ``Classifies given raw emails.``
-* dataset_downloader.sh ``Enron dataset downloader.``
+* dataset_downloader ``Enron dataset downloader which uses dataset_downloader.sh``
 
 Dependency List
 ---------------
