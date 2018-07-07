@@ -30,8 +30,31 @@ Dependency List
 * scipy
 * numpy
 * nltk
+* click (for CLI)
 
 Two main function of ``spam_classifier`` classifies given raw email.
 
 * ``classify_email``
 * ``classify_email_with_enron``
+
+CLI
+---
+
+For available commands ``python spampy -h``
+
+.. code-block::
+
+    Spam filtering module with Machine Learning using SVM.
+    Usage
+      $ python spampy [<options>]
+    Options
+      --help, -h              Display help message
+      --download, -d          Download enron dataset
+      --eclassify, -ec        Classify given raw email with enron dataset, prompts for raw email
+      --classify, -c          Classify given raw email, prompts for raw email
+      --version, -v           Display installed version
+    Examples
+      $ python spampy --help
+      $ python spampy --download
+      $ python spampy --eclassify
+      $ python spampy --classify
