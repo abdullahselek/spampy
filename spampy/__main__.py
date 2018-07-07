@@ -13,18 +13,18 @@ from spampy import (
 help_message = '''
   Spam filtering module with Machine Learning using SVM.
   Usage
-    $ python spampy [<options> ...]
+    $ python spampy [<options>]
   Options
     --help, -h              Display help message
     --download, -d          Download enron dataset
-    --eclassify, -ec        Classify given raw email with enron dataset
-    --classify, -c          Classify given raw email
+    --eclassify, -ec        Classify given raw email with enron dataset, prompts for raw email
+    --classify, -c          Classify given raw email, prompts for raw email
     --version, -v           Display installed version
   Examples
     $ python spampy --help
     $ python spampy --download
-    $ python spampy --eclassify 'raw email'
-    $ python spampy --classify 'raw email'
+    $ python spampy --eclassify
+    $ python spampy --classify
 '''
 
 spampy_version = __version__
