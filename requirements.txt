@@ -2,3 +2,4 @@ scikit_learn
 scipy
 numpy
 nltk
+click
