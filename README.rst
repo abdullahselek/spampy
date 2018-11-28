@@ -12,7 +12,7 @@ it a non-probabilistic binary linear classifier.
 Many email services today provide spam filters that are able to classify emails into spam and non-spam email with high accuracy.
 **spampy** is a learning project that you can use filtering spam mails.
 
-**spampy** uses two different datasets for classification. One of the datasets is already import inside the project under ``spampy/datasets/`` folder.
+**spampy** uses two different datasets for classification. One of the datasets is already imported inside the project under ``spampy/datasets/`` folder.
 Second dataset is `enron-spam <http://www.aueb.gr/users/ion/data/enron-spam/>`_ dataset and inside the ``spampy`` folder I created a shell script which
 downloads and extract it for you.
 
