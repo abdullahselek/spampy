@@ -40,7 +40,7 @@ Two main function of ``spam_classifier`` classifies given raw email.
 CLI
 ---
 
-For available commands ``python spampy -h``
+For available commands ``python -m spampy -h``
 
 .. code-block::
 
