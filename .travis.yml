@@ -16,5 +16,5 @@ install:
 
 # command to run tests
 script:
-  - py.test -s -v --cov-report xml --cov=spampy tests/
+  - py.test -s -vv --cov-report xml --cov=spampy tests/
   - codecov
