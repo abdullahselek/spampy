@@ -47,7 +47,7 @@ setup(
     install_requires=requirements,
     setup_requires=['pytest-runner'],
     tests_require=requirements_testing,
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4',
+    python_requires='!=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4',
     keywords='machine learning, spam filter, support vector machine, spam, svm',
     classifiers=[
         'Intended Audience :: Developers',
@@ -57,7 +57,6 @@ setup(
         'Topic :: Software Development',
         'Topic :: Scientific/Engineering',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
