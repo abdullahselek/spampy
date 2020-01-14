@@ -10,6 +10,7 @@ from spampy import (
     spam_classifier
 )
 
+
 help_message = '''
   Spam filtering module with Machine Learning using SVM.
   Usage
@@ -36,6 +37,7 @@ spampy_version = __version__
 @click.option('-v', '--version', is_flag=True, default=False, help='Display installed version')
 @click.option('-h', '--help', is_flag=True, default=False, help='Display help message')
 
+
 def main(download, eclassify, classify, version, help):
     if (help):
         print(help_message)
@@ -54,6 +56,7 @@ def main(download, eclassify, classify, version, help):
                 email = click.prompt('Raw email', type=str)
                 is_spam = spam_classifier.classify_email(email)
                 print(True if is_spam == 1 else False)
+
 
 if __name__ == '__main__':
     main()

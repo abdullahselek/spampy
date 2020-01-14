@@ -17,6 +17,7 @@ parent_directory_path = dirname(__file__)
 linear_svm = svm.SVC(C=0.1, kernel='linear')
 linear_svc = LinearSVC()
 
+
 def load_training_set():
     """
     Load training set and return features and labels.
@@ -30,6 +31,7 @@ def load_training_set():
     X, y = dataset['X'], dataset['y']
     return X, y
 
+
 def load_test_set():
     """
     Load test set and return features and labels.
@@ -42,6 +44,7 @@ def load_test_set():
     Xtest, ytest = dataset['Xtest'], dataset['ytest']
     return Xtest, ytest
 
+
 def train_svm():
     """
     Fit SVM with features and labels.
@@ -50,7 +53,8 @@ def train_svm():
     X, y = load_training_set()
     linear_svm.fit(X, y.flatten())
 
-def classify_email(email):
+
+def classify_email(email: str):
     """
     Classify spam possibility of given email.
     Args:
@@ -67,7 +71,8 @@ def classify_email(email):
     spam_prediction = linear_svm.predict(double_dimesion_email)
     return spam_prediction
 
-def classify_email_with_enron(email):
+
+def classify_email_with_enron(email: str):
     """
     Classify spam possibility of given email with enron dataset.
     Args:

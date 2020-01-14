@@ -5,6 +5,7 @@ import os
 import unittest
 from spampy import dataset_downloader
 
+
 class DatasetDownloaderTests(unittest.TestCase):
 
     def test_download_enron_dataset(self):

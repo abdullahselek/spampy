@@ -13,10 +13,12 @@ class SpamClassifierTests(unittest.TestCase):
         self.assertIsNotNone(X)
         self.assertIsNotNone(y)
 
+
     def test_load_test_set(self):
         Xtest, ytest = spam_classifier.load_test_set()
         self.assertIsNotNone(Xtest)
         self.assertIsNotNone(ytest)
+
 
     def test_classify_email(self):
         with open(os.path.join('tests/data', 'spam_sample.txt'), 'r') as f:

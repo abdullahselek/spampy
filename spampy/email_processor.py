@@ -9,8 +9,10 @@ import codecs
 import multiprocessing as mp
 
 from collections import Counter
+from typing import Dict
 
-def preprocess(email):
+
+def preprocess(email: str):
     """
     Preprocess (simplifies) raw email.
     Args:
@@ -34,7 +36,8 @@ def preprocess(email):
     email = re.sub('[$]+', 'dollar', email)
     return email
 
-def create_tokenlist(email):
+
+def create_tokenlist(email: str):
     """
     Tokenizes it, creates a list of tokens in the e-mail.
     Args:
@@ -62,7 +65,8 @@ def create_tokenlist(email):
         tokenlist.append(stemmed)
     return tokenlist    
 
-def get_vocablary_dict(path='spampy/datasets', filename='vocablary.txt'):
+
+def get_vocablary_dict(path: str = 'spampy/datasets', filename: str = 'vocablary.txt'):
     """
     Add vocablary text file content into a dictionary.
     Args:
@@ -81,7 +85,8 @@ def get_vocablary_dict(path='spampy/datasets', filename='vocablary.txt'):
             vocablary_dict[int(val)] = key
     return vocablary_dict
 
-def get_vocablary_indices(email, vocablary_dict):
+
+def get_vocablary_indices(email: str, vocablary_dict: Dict):
     """
     Returns a list of indices (location) of each stemmed word in email.
     Args:
@@ -97,7 +102,8 @@ def get_vocablary_indices(email, vocablary_dict):
     index_list = [vocablary_dict[token] for token in tokenlist if token in vocablary_dict]
     return index_list
 
-def feature_vector_from_email(email, vocablary_dict):
+
+def feature_vector_from_email(email: str, vocablary_dict: Dict):
     """
     Returns a vector of shape (n,1) with a size of the vocablary_dict.
     If the vocab word with index == 1 is in the email, first element in
@@ -116,7 +122,8 @@ def feature_vector_from_email(email, vocablary_dict):
         result[index] = 1
     return result
 
-def listdir(directory):
+
+def listdir(directory: str):
     """
     A specialized version of os.listdir() that ignores files that
     start with a leading period.
@@ -126,7 +133,8 @@ def listdir(directory):
     filelist = os.listdir(directory)
     return [x for x in filelist if not (x.startswith('.'))]
 
-def enron_processor(emails_dir, return_dict):
+
+def enron_processor(emails_dir: str, return_dict: Dict):
     """
     A function which processes .txt email files into lists
     and returns in a dictionary.
@@ -152,7 +160,8 @@ def enron_processor(emails_dir, return_dict):
     return_dict['all_words'] = dictionary
     return_dict['list_to_remove'] = list_to_remove
 
-def create_enron_dictionary(root_dir='spampy/datasets/enron'):
+
+def create_enron_dictionary(root_dir: str = 'spampy/datasets/enron'):
     """
     A function which create a dictionary from enron dataset.
     Uses multiple process.
@@ -186,7 +195,8 @@ def create_enron_dictionary(root_dir='spampy/datasets/enron'):
     np.save('dict_enron.npy', dictionary)
     return dictionary
 
-def features_processor(emails_dir, return_dict):
+
+def features_processor(emails_dir: str, return_dict: Dict):
     """
     A function which processes data features into lists
     and returns in a dictionary.
@@ -222,7 +232,8 @@ def features_processor(emails_dir, return_dict):
     return_dict['features_matrix'] = features_matrix
     return_dict['train_labels'] = train_labels
 
-def extract_enron_features(root_dir='spampy/datasets/enron'):
+
+def extract_enron_features(root_dir: str = 'spampy/datasets/enron'):
     """
     A function creates features and labels from enron dataset.
     Uses multiple process and returns in a tuple.
