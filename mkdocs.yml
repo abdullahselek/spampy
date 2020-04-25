@@ -1,0 +1,56 @@
+site_name: spampy
+site_description: Spam filtering module with Machine Learning using Support Vector Machines.
+site_url: https://spampy.abdullahselek.com/
+theme:
+  name: material
+  palette:
+    primary: light-green
+    accent: amber
+  favicon: images/favicon.png
+  language: en
+repo_name: abdullahselek/spampy
+repo_url: https://github.com/abdullahselek/spampy
+edit_uri: ''
+nav:
+- spampy: index.md
+- installation.md
+- Module Documentation:
+  - module/dataset_downloader.md
+  - module/email_processor.md
+  - module/spam_classifier.md
+  - module/cli.md
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: true
+      watch:
+        - spampy
+markdown_extensions:
+- toc:
+    permalink: true
+- markdown.extensions.codehilite:
+    guess_lang: false
+- markdown_include.include:
+    base_path: docs
+- admonition
+- codehilite
+- extra
+extra:
+  social:
+  - icon: fontawesome/brands/github-alt
+    link: https://github.com/abdullahselek/spampy
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/in/abdullahselek
+  - icon: fontawesome/solid/globe
+    link: https://abdullahselek.com
+extra_css:
+- css/termynal.css
+- css/custom.css
+extra_javascript:
+- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
+- js/termynal.js
+- js/custom.js
