@@ -6,6 +6,8 @@ import scipy.io as sio
 import numpy as np
 
 from os.path import join, dirname
+from typing import List, Tuple
+
 from sklearn import svm
 from spampy import email_processor
 from sklearn.model_selection import train_test_split
@@ -18,7 +20,7 @@ linear_svm = svm.SVC(C=0.1, kernel='linear')
 linear_svc = LinearSVC()
 
 
-def load_training_set():
+def load_training_set() -> Tuple[List, List]:
     """
     Load training set and return features and labels.
     Returns:
@@ -32,7 +34,7 @@ def load_training_set():
     return X, y
 
 
-def load_test_set():
+def load_test_set() -> Tuple[List, List]:
     """
     Load test set and return features and labels.
     Returns:
@@ -54,7 +56,7 @@ def train_svm():
     linear_svm.fit(X, y.flatten())
 
 
-def classify_email(email: str):
+def classify_email(email: str) -> int:
     """
     Classify spam possibility of given email.
     Args:
@@ -72,7 +74,7 @@ def classify_email(email: str):
     return spam_prediction
 
 
-def classify_email_with_enron(email: str):
+def classify_email_with_enron(email: str) -> int:
     """
     Classify spam possibility of given email with enron dataset.
     Args:

@@ -9,10 +9,10 @@ import codecs
 import multiprocessing as mp
 
 from collections import Counter
-from typing import Dict
+from typing import Dict, List, Tuple
 
 
-def preprocess(email: str):
+def preprocess(email: str) -> str:
     """
     Preprocess (simplifies) raw email.
     Args:
@@ -37,7 +37,7 @@ def preprocess(email: str):
     return email
 
 
-def create_tokenlist(email: str):
+def create_tokenlist(email: str) -> List:
     """
     Tokenizes it, creates a list of tokens in the e-mail.
     Args:
@@ -66,7 +66,7 @@ def create_tokenlist(email: str):
     return tokenlist    
 
 
-def get_vocablary_dict(path: str = 'spampy/datasets', filename: str = 'vocablary.txt'):
+def get_vocablary_dict(path: str = 'spampy/datasets', filename: str = 'vocablary.txt') -> Dict:
     """
     Add vocablary text file content into a dictionary.
     Args:
@@ -86,7 +86,7 @@ def get_vocablary_dict(path: str = 'spampy/datasets', filename: str = 'vocablary
     return vocablary_dict
 
 
-def get_vocablary_indices(email: str, vocablary_dict: Dict):
+def get_vocablary_indices(email: str, vocablary_dict: Dict) -> List:
     """
     Returns a list of indices (location) of each stemmed word in email.
     Args:
@@ -103,7 +103,7 @@ def get_vocablary_indices(email: str, vocablary_dict: Dict):
     return index_list
 
 
-def feature_vector_from_email(email: str, vocablary_dict: Dict):
+def feature_vector_from_email(email: str, vocablary_dict: Dict) -> Dict:
     """
     Returns a vector of shape (n,1) with a size of the vocablary_dict.
     If the vocab word with index == 1 is in the email, first element in
@@ -161,7 +161,7 @@ def enron_processor(emails_dir: str, return_dict: Dict):
     return_dict['list_to_remove'] = list_to_remove
 
 
-def create_enron_dictionary(root_dir: str = 'spampy/datasets/enron'):
+def create_enron_dictionary(root_dir: str = 'spampy/datasets/enron') -> Dict:
     """
     A function which create a dictionary from enron dataset.
     Uses multiple process.
@@ -233,7 +233,7 @@ def features_processor(emails_dir: str, return_dict: Dict):
     return_dict['train_labels'] = train_labels
 
 
-def extract_enron_features(root_dir: str = 'spampy/datasets/enron'):
+def extract_enron_features(root_dir: str = 'spampy/datasets/enron') -> Tuple:
     """
     A function creates features and labels from enron dataset.
     Uses multiple process and returns in a tuple.
