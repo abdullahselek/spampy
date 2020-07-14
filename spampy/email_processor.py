@@ -123,7 +123,7 @@ def feature_vector_from_email(email: str, vocablary_dict: Dict) -> Dict:
     return result
 
 
-def listdir(directory: str):
+def listdir(directory: str) -> List:
     """
     A specialized version of os.listdir() that ignores files that
     start with a leading period.
@@ -134,7 +134,7 @@ def listdir(directory: str):
     return [x for x in filelist if not (x.startswith('.'))]
 
 
-def enron_processor(emails_dir: str, return_dict: Dict):
+def enron_processor(emails_dir: str, return_dict: Dict) -> Dict:
     """
     A function which processes .txt email files into lists
     and returns in a dictionary.
@@ -196,7 +196,7 @@ def create_enron_dictionary(root_dir: str = 'spampy/datasets/enron') -> Dict:
     return dictionary
 
 
-def features_processor(emails_dir: str, return_dict: Dict):
+def features_processor(emails_dir: str, return_dict: Dict) -> Dict:
     """
     A function which processes data features into lists
     and returns in a dictionary.
