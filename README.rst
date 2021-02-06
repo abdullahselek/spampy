@@ -1,6 +1,18 @@
 spampy
 ======
 
+.. image:: https://github.com/abdullahselek/spampy/workflows/spampy%20ci/badge.svg
+    :target: https://github.com/abdullahselek/spampy/actions
+
+.. image:: https://img.shields.io/pypi/v/spampy.svg
+    :target: https://pypi.python.org/pypi/spampy/
+
+.. image:: https://img.shields.io/pypi/pyversions/spampy.svg
+    :target: https://pypi.org/project/spampy
+
+.. image:: https://pepy.tech/badge/spampy
+    :target: https://pepy.tech/project/spampy
+
 Spam filtering module with Machine Learning using SVM. **spampy** is a classifier that uses ``Support Vector Machines``
 which tries to classify given raw emails if they are spam or not.
 
