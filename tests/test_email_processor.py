@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import platform
 import unittest
 from spampy import email_processor
 
@@ -37,5 +38,7 @@ class EmailProcessorTests(unittest.TestCase):
 
 
     def test_create_enron_dictionary(self):
-        enron_dictionary = email_processor.create_enron_dictionary()
-        self.assertEqual(len(enron_dictionary), 3000)
+        system = platform.system()
+        if system == "Linux" or system == "Darwin":
+            enron_dictionary = email_processor.create_enron_dictionary()
+            self.assertEqual(len(enron_dictionary), 3000)
