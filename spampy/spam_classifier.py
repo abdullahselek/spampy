@@ -16,7 +16,7 @@ from sklearn.svm import LinearSVC
 # Parent directory
 parent_directory_path = dirname(__file__)
 # Support Vector Machine
-linear_svm = svm.SVC(C=0.1, kernel='linear')
+linear_svm = svm.SVC(C=0.1, kernel="linear")
 linear_svc = LinearSVC()
 
 
@@ -28,9 +28,9 @@ def load_training_set() -> Tuple[List, List]:
     """
 
     # Training set
-    training_set = join(parent_directory_path, 'datasets/spamTrain.mat')
+    training_set = join(parent_directory_path, "datasets/spamTrain.mat")
     dataset = sio.loadmat(training_set)
-    X, y = dataset['X'], dataset['y']
+    X, y = dataset["X"], dataset["y"]
     return X, y
 
 
@@ -41,9 +41,9 @@ def load_test_set() -> Tuple[List, List]:
       Test features and labels.
     """
 
-    training_set = join(parent_directory_path, 'datasets/spamTest.mat')
+    training_set = join(parent_directory_path, "datasets/spamTest.mat")
     dataset = sio.loadmat(training_set)
-    Xtest, ytest = dataset['Xtest'], dataset['ytest']
+    Xtest, ytest = dataset["Xtest"], dataset["ytest"]
     return Xtest, ytest
 
 
@@ -87,13 +87,17 @@ def classify_email_with_enron(email: str) -> int:
     vocablary_dict = email_processor.create_enron_dictionary()
     feature_vector = email_processor.feature_vector_from_email(email, vocablary_dict)
     double_dimesion_email = np.reshape(feature_vector, (-1, 3000))
-    if os.path.exists('enron_features_matrix.npy') == False & os.path.exists('enron_labels.npy') == False:
+    if (
+        os.path.exists("enron_features_matrix.npy")
+        == False & os.path.exists("enron_labels.npy")
+        == False
+    ):
         features_matrix, labels = email_processor.extract_enron_features()
-        np.save('enron_features_matrix.npy', features_matrix)
-        np.save('enron_labels.npy', labels)
+        np.save("enron_features_matrix.npy", features_matrix)
+        np.save("enron_labels.npy", labels)
     else:
-        features_matrix = np.load('enron_features_matrix.npy')
-        labels = np.load('enron_labels.npy')
+        features_matrix = np.load("enron_features_matrix.npy")
+        labels = np.load("enron_labels.npy")
     X_train, _, y_train, _ = train_test_split(features_matrix, labels, test_size=0.40)
     linear_svc.fit(X_train, y_train)
     return linear_svc.predict(double_dimesion_email)
