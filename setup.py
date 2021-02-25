@@ -47,7 +47,7 @@ setup(
     platforms=['Any'],
     install_requires=requirements,
     tests_require=requirements_testing,
-    python_requires='!=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4',
+    python_requires='!=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4',
     keywords='machine learning, spam filter, support vector machine, spam, svm',
     classifiers=[
         'Intended Audience :: Developers',
