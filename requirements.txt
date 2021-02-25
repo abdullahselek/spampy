@@ -1,4 +1,4 @@
-scikit_learn
+scikit-learn
 scipy
 numpy
 nltk
