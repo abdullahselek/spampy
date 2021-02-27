@@ -58,6 +58,21 @@ Two main function of ``spam_classifier`` classifies given raw email.
 * ``classify_email``
 * ``classify_email_with_enron``
 
+Installing
+----------
+
+You can install spampy using Python Package Index::
+
+    $ pip install spampy
+
+Install with conda from the Anaconda conda-forge channel::
+
+    $ conda install -c conda-forge spampy
+
+Install from its source repository on GitHub::
+
+    $ pip install -e git+https://github.com/abdullahselek/spampy#egg=spampy
+
 CLI
 ---
 
