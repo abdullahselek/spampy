@@ -13,6 +13,15 @@ spampy
 .. image:: https://pepy.tech/badge/spampy
     :target: https://pepy.tech/project/spampy
 
+.. image:: https://img.shields.io/conda/vn/conda-forge/spampy?logo=conda-forge
+    :target: https://anaconda.org/conda-forge/spampy
+
+.. image:: https://anaconda.org/conda-forge/spampy/badges/latest_release_date.svg
+    :target: https://anaconda.org/conda-forge/spampy
+
+.. image:: https://anaconda.org/conda-forge/spampy/badges/license.svg
+    :target: https://anaconda.org/conda-forge/spampy
+
 Spam filtering module with Machine Learning using SVM. **spampy** is a classifier that uses ``Support Vector Machines``
 which tries to classify given raw emails if they are spam or not.
 
